@@ -31,6 +31,7 @@ public class InterfazArbol extends javax.swing.JFrame {
         Crear = new keeptoo.KGradientPanel();
         jButton1 = new javax.swing.JButton();
         kGradientPanel2 = new keeptoo.KGradientPanel();
+        jButton2 = new javax.swing.JButton();
         kGradientPanel3 = new keeptoo.KGradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,15 +71,23 @@ public class InterfazArbol extends javax.swing.JFrame {
         kGradientPanel2.setkEndColor(new java.awt.Color(0, 102, 204));
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 0));
 
+        jButton2.setText("jButton2");
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(67, 67, 67))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(16, 16, 16))
         );
 
         kGradientPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -180,6 +189,7 @@ public class InterfazArbol extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private keeptoo.KGradientPanel Crear;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel3;
