@@ -10,7 +10,7 @@ package main;
  * @author alexa
  */
 public class ImpresionArbol extends javax.swing.JFrame {
-
+    Raiz raiz = new Raiz();
     /**
      * Creates new form ImpresionArbol
      */
@@ -170,4 +170,20 @@ public class ImpresionArbol extends javax.swing.JFrame {
     private keeptoo.KButton kButton1;
     private keeptoo.KGradientPanel kGradientPanel1;
     // End of variables declaration//GEN-END:variables
+
+  public void VerArbol(){
+          raiz.arbol = "";
+        if(listo){
+        String raiz = "raiz [ ";
+        for(int i = 0; i < raiz.primerNodo.valores.length && raiz.primerNodo.valores[i] != 0; i++){
+            raiz += raiz.primerNodo.valores[i] + ", ";
+        }
+        raiz += " ]\n";
+        raiz += raiz.llamarRecorrer();
+        jTextArea1.setText(raiz);
+        }
+        this.setVisible(true);
+    }
+
 }
+

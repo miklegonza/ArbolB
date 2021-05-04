@@ -292,7 +292,8 @@ public class InterfazArbol extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearArbolActionPerformed
 
     private void VerArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbolActionPerformed
-        VerArbol();
+        ImpresionArbol impre = new ImpresionArbol();
+        impre.setVisible(true);
     }//GEN-LAST:event_VerArbolActionPerformed
 
     private void InsertarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarDatoActionPerformed
@@ -514,18 +515,6 @@ public class InterfazArbol extends javax.swing.JFrame {
     }
     
     
-    public void VerArbol(){
-          raiz.arbol = "";
-        if(listo){
-        String raiz = "raiz [ ";
-        for(int i = 0; i < raiz.primerNodo.valores.length && raiz.primerNodo.valores[i] != 0; i++){
-            raiz += raiz.primerNodo.valores[i] + ", ";
-        }
-        raiz += " ]\n";
-        raiz += raiz1.llamarRecorrer();
-        jTextArea1.setText(raiz);
-        }
-        frameArbol.setVisible(true);
-    }
+  
     
 }
