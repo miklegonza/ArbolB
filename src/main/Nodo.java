@@ -7,14 +7,15 @@ package main;
  * @author Rober Alexander Martinez 
  */
 public class Nodo {
-    int []datos;
-    Nodo []nodo;
-    static int ndatos;
-    boolean hayHijos = false;
-    int lleno = 0;
-    Nodo padre;
+    public int[] claves;
+    public Nodo[] hijos;
+    public int numClaves;
+    public boolean hoja = false;
+    public int lleno = 0;
+    public Nodo padre;
+    
     public Nodo(){
-        nodo = new Nodo [Raiz.orden *2+3];
-        datos = new int [Raiz.orden *2+1];
+        hijos = new Nodo [Raiz.orden *2+3];
+        claves = new int [Raiz.orden *2+1];
     }
 }
