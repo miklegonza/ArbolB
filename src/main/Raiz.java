@@ -28,10 +28,23 @@ public class Raiz {
         this.listaClaves = new ArrayList<>();
     }
     
+    /**
+     * Verifica si el nodo está vacío.
+     * 
+     * @param nodo El nodo a validar
+     * @return verdadero si el nodo es igual a null
+     */
     public boolean nodoVacio(Nodo nodo) {
         return nodo == null;
     }
     
+    /**
+     * Crea un nodo nuevo con el valor ingresado o inserta el valor al primer 
+     * nodo. recorre todas las claves del nodo. Cuando encuentra un espacio
+     * vacio, lo inserta ahí.
+     * 
+     * @param clave El valor a insertar en el nodo
+     */
     public void insertarNodo(int clave) {
         if (!primero.hoja) {
             int j = 0;
@@ -45,13 +58,21 @@ public class Raiz {
                 }
             }
             if (j == 2 * orden)
-                split(primero);
+                dividir(primero);
         } else {
             setHoja(primero);
             insertarHijo(primero, clave);
         }
     }
     
+    /**
+     * Crea un nuevo nodo hijo del nodo seleccionado. El nodo padre deja de ser
+     * una hoja y en la posición correspondiente se agrega el nuevo nodo con la
+     * clave especificada.
+     * 
+     * @param padre El nodo al que pertenecerá el hijo
+     * @param clave El valor que se le inserta al nuevo nodo
+     */
     public void insertarHijo(Nodo padre, int clave) {
         boolean logrado = false;
         if (!nodoVacio(padre) && !padre.hoja) {
@@ -61,7 +82,7 @@ public class Raiz {
                     ordenarClaves(padre.claves);
                     listaClaves.add(clave);
                     if (i == 2 * orden)
-                        split(padre);
+                        dividir(padre);
                     break;
                 }
             }
@@ -76,6 +97,12 @@ public class Raiz {
         }
     }
     
+    /**
+     * Ordena las claves cuando se inserta una nueva al nodo, puesto que siempre
+     * deben estar ordenadas. 
+     * 
+     * @param claves El arreglo a ordenar
+     */
     public void ordenarClaves(int[] claves) {
         int counter = 0;
         for (int i = 0; i < claves.length; i++) {
@@ -95,6 +122,38 @@ public class Raiz {
         }
     }
     
+    /**
+     * Los nodos, al igual que las claves, deben estar ordenados y ubicados de
+     * modo que las claves insertadas no excedan el tamaño permitido y siempre
+     * se cumpla con una jerarquía balanceada. Aquí, se determina la unicación
+     * de los hijos en el nodo padre.
+     * 
+     * @param nodo El nodo que se va a evaluar y ordenar
+     */
+    public void ordenarNodos(Nodo nodo) {
+        int i = 0, j;
+        Nodo temp;
+        while (i < 2 * orden + 3 && !nodoVacio(nodo.hijos[i])) {
+            j = 0;
+            while (j < 2 * orden + 2 && !nodoVacio(nodo.hijos[j]) && !nodoVacio(nodo.hijos[j + 1])) {
+                if (nodo.hijos[j].claves[0] > nodo.hijos[j + 1].claves[0]) {
+                    temp = nodo.hijos[j];
+                    nodo.hijos[j] = nodo.hijos[j + 1];
+                    nodo.hijos[j + 1] = temp;
+                }
+                j++;
+            }
+            i++;
+        }
+    }
+    
+    /**
+     * Asigna la propiedad de hoja al nodo. Si el nodo no tiene hijos, pasa a
+     * ser una hoja. Si el nodo tiene hijos, se aplica recursividad para que
+     * recorra progresivamente los hijos hasta que se encuentre con las hojas.
+     * 
+     * @param nodo El nodo a evaluar
+     */
     public void setHoja(Nodo nodo) {
         if (nodo == primero) {
             if (primero.hijos[0] != null) {
@@ -109,6 +168,175 @@ public class Raiz {
         }
     }
     
+    /**
+     * Es uno de los métodos más importantes para la organización e inserción de
+     * los elementos en el árbol, ya que el tamaño de las claves o los valores
+     * de cada nodo, es decir, el orden, no se debe exceder. Cuando eso pasa, se
+     * tiene que dividir el nodo se convierte en el padre de un sub-árbol en el
+     * que los elementos mayores que la mitad pasan a ser el nodo hijo del lado
+     * derecho y los menores terminan siendo un nodo hijo al lado izquierdo,
+     * quedando como raíz el valor de la mitad.
+     * 
+     * Para esto se verifica si el nodo tiene hijos antes de dividirlo. Si los
+     * tiene, los separa en nodo izquierdo y derecho. Luego, guarda los
+     * respectivos valores a cada lado. 
+     * 
+     * @param nodo 
+     */
+    public void dividir(Nodo nodo) {
+        Nodo izquierdo = new Nodo();
+        Nodo derecho = new Nodo();
+
+        //Primera división
+        if (!nodoVacio(nodo.hijos[0])) { 
+            for (int i = 0; i < orden + 1; i++) {
+                izquierdo.hijos[i] = nodo.hijos[i];
+                izquierdo.hijos[i].padre = izquierdo;
+                nodo.hijos[i] = null;
+                
+                derecho.hijos[i] = nodo.hijos[orden + 1 + i];
+                derecho.hijos[i].padre = derecho;
+                nodo.hijos[orden + 1 + i] = null;
+            }
+        }
+        
+        //Guardar los valores en izquierdo y derecho
+        for (int i = 0; i < orden; i++) {
+            izquierdo.claves[i] = nodo.claves[i];
+            nodo.claves[i] = 0;
+            derecho.claves[i] = nodo.claves[orden + 1 + i];
+            nodo.claves[orden + 1 + i] = 0;
+        }
+        nodo.claves[0] = nodo.claves[orden];
+        nodo.claves[orden] = 0; //En el padre soloqueda el valor que subió
+        
+        nodo.hijos[0] = izquierdo; //asigna al noso el nuevo hijo izquierdo
+        nodo.hijos[0].padre = nodo;
+        nodo.hijos[1] = derecho; //asigna al nodo el nuevo hijo derecho
+        nodo.hijos[1].padre = nodo;
+        setHoja(primero);
+        ordenarNodos(nodo);
+        
+        //Ahora se sube el valor del padre
+        if (!nodoVacio(nodo.padre)) {
+            boolean logrado = false;
+            for (int i = 0; i < nodo.padre.claves.length && !logrado; i++) {
+                if (nodo.padre.claves[i] == 0) {
+                    nodo.padre.claves[i] = nodo.claves[0];
+                    logrado = true;
+                    nodo.claves[0] = 0;
+                    ordenarClaves(nodo.padre.claves);
+                }
+            }
+            int posicion = 0;
+            for (int i = 0; i < 2 * orden + 3; i++) {
+                if (!nodoVacio(nodo.padre.hijos[i]))
+                    posicion++;
+                else
+                    break;
+            }
+            nodo.padre.hijos[posicion] = nodo.hijos[0];
+            nodo.padre.hijos[posicion].padre = nodo.padre;
+            nodo.padre.hijos[posicion + 1] = nodo.hijos[1];
+            nodo.padre.hijos[posicion + 1].padre = nodo.padre;
+            
+            int actual = 0;
+            for (int i = 0; i < 2 * orden + 3 && !nodoVacio(nodo.padre.hijos[i]); i++) {
+                if (nodo.padre.hijos[i].claves[0] == nodo.claves[0]) {
+                    actual = i;
+                    break;
+                }
+            }
+            
+            Nodo temp = nodo.padre;
+            nodo = null;
+            int j = actual;
+            while (j < 2 * orden + 2 && !nodoVacio(temp.hijos[j]) && !nodoVacio(temp.hijos[j + 1])) {
+                temp.hijos[j] = temp.hijos[j + 1];
+                j++;
+            }
+            temp.hijos[j] = null;
+            ordenarClaves(temp.claves);
+            ordenarNodos(temp);
+            if (temp.claves[2 * orden] != 0)
+                dividir(temp);
+        }
+    }
     
+    public void eliminar(int clave) {
+        boolean encontrado = false;
+        int pos = 0;
+        for (int i = 0; i < listaClaves.size() && !encontrado; i++) {
+            if (listaClaves.get(i) == clave) {
+                encontrado = true;
+                pos = i;
+            }
+        }
+        
+        if (encontrado)
+            listaClaves.remove(pos);
+        else
+            System.out.println("No encontrado");
+        
+        ArrayList<Integer> aux = listaClaves;
+        listaClaves = new ArrayList<>();
+        primero = new Nodo();
+        primero.hoja = false;
+        for (int i = 0; i < aux.size(); i++) {
+            int claveNueva = aux.get(i);
+            insertarNodo(claveNueva);
+        }
+    }
+    
+    public boolean buscar(int clave) {
+        for (int i = 0; i < listaClaves.size(); i++) {
+            if (listaClaves.get(i) == clave) {
+                System.out.println("Elemento encontrado");
+                return true;
+            }
+        }
+        System.out.println("No encontrado");
+        return false;
+    }
+    
+    public String imprimirArbol(Nodo nodo) {
+        arbol += "\n";
+        for (int i = 0; i < 2 * orden + 1; i++) {
+            if (nodoVacio(nodo.hijos[i])) {
+                if (i == 0) {
+                    nivel++;
+                    imprimir = 1;
+                } else {
+                    imprimir++;
+                }
+                imprimirArbol(nodo.hijos[i]);
+            }
+            arbol += "[ ";
+            for (int j = 0; j < nodo.hijos[i].claves.length && nodoVacio(nodo.hijos[i]); j++) {
+                if (nodo.hijos[i].claves[j] != 0)
+                    arbol += nodo.hijos[i].claves[j] + ", ";
+            }
+            arbol += " ]";
+        }
+        if (arbol.length() > (2 * orden + 3) * 4)
+            System.out.println(arbol);
+        return arbol;
+    }
+    
+    public String impresion() {
+        String a = imprimirArbol(primero);
+        nivel = 1;
+        imprimir = 1;
+        return a;
+    }
+    
+    public boolean numero(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
     
 }
