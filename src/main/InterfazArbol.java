@@ -12,6 +12,7 @@ public class InterfazArbol extends javax.swing.JFrame {
 
     Raiz raiz;
     boolean listo = false;
+    boolean existe = false;
     Raiz raizAux = new Raiz(2);
 
     public InterfazArbol() {
@@ -429,7 +430,7 @@ public class InterfazArbol extends javax.swing.JFrame {
 
     public void insertarDatos() {
         if (!jTextField3.getText().equals("")) {
-            boolean numero = raizAux.esNumero(jTextField3.getText());
+            boolean numero = raizAux.numero(jTextField3.getText());
             if (numero) {
                 boolean adentro = false;
                 if (existe) {
@@ -443,7 +444,7 @@ public class InterfazArbol extends javax.swing.JFrame {
                     if (!jTextField3.getText().equals("")) {
                         if (!jTextField3.getText().equals("0")) {
                             if (listo) {
-                                raiz.insertar(Integer.parseInt(jTextField3.getText()));
+                                raiz.insertarNodo(Integer.parseInt(jTextField3.getText()));
                                 JOptionPane.showMessageDialog(this, "El elemento "
                                         + jTextField3.getText() + " ha sido ingresado de forma exitosa al arbol B",
                                         "Inserción Exitosa", JOptionPane.WARNING_MESSAGE);
@@ -477,7 +478,7 @@ public class InterfazArbol extends javax.swing.JFrame {
 
     public void eliminarDatos() {
         boolean esta = false;
-        boolean numero = raizAux.esNumero(jTextField4.getText());
+        boolean numero = raizAux.numero(jTextField4.getText());
         if (!jTextField4.getText().equals("")) {
             if (numero) {
                 if (listo) {

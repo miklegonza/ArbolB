@@ -10,7 +10,8 @@ package main;
  * @author alexa
  */
 public class ImpresionArbol extends javax.swing.JFrame {
-    Raiz raiz = new Raiz();
+    Raiz raiz1 = new Raiz(2);
+    InterfazArbol bool = new InterfazArbol();
     /**
      * Creates new form ImpresionArbol
      */
@@ -172,14 +173,14 @@ public class ImpresionArbol extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
   public void VerArbol(){
-          raiz.arbol = "";
-        if(listo){
+          raiz1.arbol = "";
+        if(bool.listo){
         String raiz = "raiz [ ";
-        for(int i = 0; i < raiz.primerNodo.valores.length && raiz.primerNodo.valores[i] != 0; i++){
-            raiz += raiz.primerNodo.valores[i] + ", ";
+        for(int i = 0; i < raiz1.primero.claves.length && raiz1.primero.claves[i] != 0; i++){
+            raiz += raiz1.primero.claves[i] + ", ";
         }
         raiz += " ]\n";
-        raiz += raiz.llamarRecorrer();
+        raiz += raiz1.impresion();
         jTextArea1.setText(raiz);
         }
         this.setVisible(true);
