@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
+
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author alexa
+ * @author Michael Gonzalez
+ * @author Michael Betancourt
+ * @author Rober Alexander Martinez
  */
 public class InterfazArbol extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfazArbol
-     */
+    Raiz raiz;
+    boolean listo = false;
+    Raiz raizAux = new Raiz(2);
+
     public InterfazArbol() {
         initComponents();
     }
@@ -29,24 +29,47 @@ public class InterfazArbol extends javax.swing.JFrame {
 
         kGradientPanel1 = new keeptoo.KGradientPanel();
         Crear = new keeptoo.KGradientPanel();
-        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        CrearArbol = new keeptoo.KButton();
         kGradientPanel2 = new keeptoo.KGradientPanel();
-        jButton2 = new javax.swing.JButton();
+        VerArbol = new keeptoo.KButton();
         kGradientPanel3 = new keeptoo.KGradientPanel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        InsertarDato = new keeptoo.KButton();
+        EliminarDato = new keeptoo.KButton();
+        BuscarDato = new keeptoo.KButton();
+        BotonCerrar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 51, 102));
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 0));
 
-        Crear.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        Crear.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Crear Arbol"));
+        Crear.setToolTipText("");
         Crear.setkEndColor(new java.awt.Color(0, 102, 204));
         Crear.setkStartColor(new java.awt.Color(0, 0, 0));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jTextField1MouseDragged(evt);
+            }
+        });
+
+        CrearArbol.setText("Crear Nuevo Arbol");
+        CrearArbol.setkBackGroundColor(new java.awt.Color(0, 102, 204));
+        CrearArbol.setkEndColor(new java.awt.Color(204, 204, 204));
+        CrearArbol.setkHoverEndColor(new java.awt.Color(0, 0, 0));
+        CrearArbol.setkHoverForeGround(new java.awt.Color(0, 102, 153));
+        CrearArbol.setkHoverStartColor(new java.awt.Color(0, 0, 0));
+        CrearArbol.setkStartColor(new java.awt.Color(0, 51, 153));
+        CrearArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CrearArbolActionPerformed(evt);
             }
         });
 
@@ -55,80 +78,189 @@ public class InterfazArbol extends javax.swing.JFrame {
         CrearLayout.setHorizontalGroup(
             CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CrearLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jButton1)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addGroup(CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearLayout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearLayout.createSequentialGroup()
+                        .addComponent(CrearArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))))
         );
         CrearLayout.setVerticalGroup(
             CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CrearLayout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(16, 16, 16))
+            .addGroup(CrearLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(CrearArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        kGradientPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        kGradientPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Visualizar"));
         kGradientPanel2.setkEndColor(new java.awt.Color(0, 102, 204));
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 0));
 
-        jButton2.setText("jButton2");
+        VerArbol.setText("Ver Arbol");
+        VerArbol.setkBackGroundColor(new java.awt.Color(0, 102, 204));
+        VerArbol.setkEndColor(new java.awt.Color(204, 204, 204));
+        VerArbol.setkHoverEndColor(new java.awt.Color(0, 0, 0));
+        VerArbol.setkHoverForeGround(new java.awt.Color(0, 102, 153));
+        VerArbol.setkHoverStartColor(new java.awt.Color(0, 0, 0));
+        VerArbol.setkStartColor(new java.awt.Color(0, 51, 153));
+        VerArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerArbolActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(67, 67, 67))
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(VerArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(16, 16, 16))
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(VerArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        kGradientPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        kGradientPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
         kGradientPanel3.setkEndColor(new java.awt.Color(0, 102, 204));
         kGradientPanel3.setkStartColor(new java.awt.Color(0, 0, 0));
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        InsertarDato.setText("Insertar Dato");
+        InsertarDato.setkBackGroundColor(new java.awt.Color(0, 102, 204));
+        InsertarDato.setkEndColor(new java.awt.Color(204, 204, 204));
+        InsertarDato.setkHoverEndColor(new java.awt.Color(0, 0, 0));
+        InsertarDato.setkHoverForeGround(new java.awt.Color(0, 102, 153));
+        InsertarDato.setkHoverStartColor(new java.awt.Color(0, 0, 0));
+        InsertarDato.setkStartColor(new java.awt.Color(0, 51, 153));
+        InsertarDato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertarDatoActionPerformed(evt);
+            }
+        });
+
+        EliminarDato.setText("Eliminar Dato");
+        EliminarDato.setkBackGroundColor(new java.awt.Color(0, 102, 204));
+        EliminarDato.setkEndColor(new java.awt.Color(204, 204, 204));
+        EliminarDato.setkHoverEndColor(new java.awt.Color(0, 0, 0));
+        EliminarDato.setkHoverForeGround(new java.awt.Color(0, 102, 153));
+        EliminarDato.setkHoverStartColor(new java.awt.Color(0, 0, 0));
+        EliminarDato.setkStartColor(new java.awt.Color(0, 51, 153));
+        EliminarDato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarDatoActionPerformed(evt);
+            }
+        });
+
+        BuscarDato.setText("Buscar Dato");
+        BuscarDato.setkBackGroundColor(new java.awt.Color(0, 102, 204));
+        BuscarDato.setkEndColor(new java.awt.Color(204, 204, 204));
+        BuscarDato.setkHoverEndColor(new java.awt.Color(0, 0, 0));
+        BuscarDato.setkHoverForeGround(new java.awt.Color(0, 102, 153));
+        BuscarDato.setkHoverStartColor(new java.awt.Color(0, 0, 0));
+        BuscarDato.setkStartColor(new java.awt.Color(0, 51, 153));
+        BuscarDato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarDatoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
         kGradientPanel3.setLayout(kGradientPanel3Layout);
         kGradientPanel3Layout.setHorizontalGroup(
             kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
+            .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(InsertarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(EliminarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(BuscarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         kGradientPanel3Layout.setVerticalGroup(
             kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel3Layout.createSequentialGroup()
+                .addGap(0, 37, Short.MAX_VALUE)
+                .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InsertarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EliminarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarDato, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
+
+        BotonCerrar.setText("[X] Cerrar");
+        BotonCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonCerrarMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setText("ARBOL B");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(Crear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonCerrar)
+                .addGap(17, 17, 17))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonCerrar)
+                    .addComponent(jLabel1))
+                .addGap(19, 19, 19)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Crear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,9 +279,39 @@ public class InterfazArbol extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCerrarMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_BotonCerrarMouseClicked
+
+    private void jTextField1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseDragged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jTextField1MouseDragged
+
+    private void CrearArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearArbolActionPerformed
+        CrearArbol();
+    }//GEN-LAST:event_CrearArbolActionPerformed
+
+    private void VerArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbolActionPerformed
+        ImpresionArbol impre = new ImpresionArbol();
+        impre.setVisible(true);
+    }//GEN-LAST:event_VerArbolActionPerformed
+
+    private void InsertarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarDatoActionPerformed
+        insertarDatos();
+    }//GEN-LAST:event_InsertarDatoActionPerformed
+
+    private void EliminarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarDatoActionPerformed
+        eliminarDatos();
+    }//GEN-LAST:event_EliminarDatoActionPerformed
+
+    private void BuscarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDatoActionPerformed
+        BuscarDato();
+
+    }//GEN-LAST:event_BuscarDatoActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,11 +349,172 @@ public class InterfazArbol extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BotonCerrar;
+    private keeptoo.KButton BuscarDato;
     private keeptoo.KGradientPanel Crear;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private keeptoo.KButton CrearArbol;
+    private keeptoo.KButton EliminarDato;
+    private keeptoo.KButton InsertarDato;
+    private keeptoo.KButton VerArbol;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
+
+    public void BuscarDato() {
+        if (!jTextField5.getText().equals("")) {
+            boolean numero = raizAux.esNumero(jTextField5.getText());
+            if (numero) {
+                if (listo) {
+                    boolean esta = raiz.buscar(Integer.parseInt(jTextField5.getText()));
+                    if (esta) {
+                        JOptionPane.showMessageDialog(this, "El elemento "
+                                + jTextField5.getText() + " si se encuentra en el arbol B",
+                                "DATO ENCONTRADO!!!", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El elemento "
+                                + jTextField5.getText() + " no se encuentra en el arbol B",
+                                "DATO NO ENCONTRADO!!!", JOptionPane.WARNING_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Aun no se ha creado ningun arbol",
+                            "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes a cero",
+                        "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe digitar algun numero en el campo",
+                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+        }
+        jTextField5.setText("");
+    }
+
+    public void CrearArbol() {
+        raiz.arbol = "";
+        if (!jTextField1.getText().equals("")) {
+            boolean numero = raizAux.esNumero(jTextField1.getText());
+            if (numero) {
+                if (!(Integer.parseInt(jTextField1.getText()) < 1)) {
+                    datos = new Lista();
+                    existe = true;
+                    raiz = new Raiz(Integer.parseInt(jTextField1.getText()));
+                    JOptionPane.showMessageDialog(this, "Ha sido creado un nuevo arbol B de grado "
+                            + jTextField1.getText(),
+                            "CREACIÓN EXITOSA", JOptionPane.WARNING_MESSAGE);
+                    listo = true;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Debe ingresar un grado entero, mayor o igual a 1",
+                            "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Debe ingresar un grado entero, mayor o igual a 1",
+                        "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar algun dato en el campo de texto",
+                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+        }
+        jTextField1.setText("");
+    }
+
+    public void insertarDatos() {
+        if (!jTextField3.getText().equals("")) {
+            boolean numero = raizAux.esNumero(jTextField3.getText());
+            if (numero) {
+                boolean adentro = false;
+                if (existe) {
+                    for (int i = 0; i < datos.ingresados.size(); i++) {
+                        if (datos.ingresados.get(i) == Integer.parseInt(jTextField3.getText())) {
+                            adentro = true;
+                        }
+                    }
+                }
+                if (!adentro) {
+                    if (!jTextField3.getText().equals("")) {
+                        if (!jTextField3.getText().equals("0")) {
+                            if (listo) {
+                                raiz.insertar(Integer.parseInt(jTextField3.getText()));
+                                JOptionPane.showMessageDialog(this, "El elemento "
+                                        + jTextField3.getText() + " ha sido ingresado de forma exitosa al arbol B",
+                                        "Inserción Exitosa", JOptionPane.WARNING_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "No ha sido creado ningun arbol B",
+                                        "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Ingrese datos distintos de 0",
+                                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Debe ingresar datos en el campo",
+                                "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El elemento ya se ha ingresado anteriormente",
+                            "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes de 0",
+                        "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar datos en el campo",
+                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+        }
+        jTextField3.setText("");
+    }
+
+    public void eliminarDatos() {
+        boolean esta = false;
+        boolean numero = raizAux.esNumero(jTextField4.getText());
+        if (!jTextField4.getText().equals("")) {
+            if (numero) {
+                if (listo) {
+                    for (int i = 0; i < datos.ingresados.size(); i++) {
+                        if (datos.ingresados.get(i) == Integer.parseInt(jTextField4.getText())) {
+                            esta = true;
+                        }
+                    }
+                    raiz.eliminar(Integer.parseInt(jTextField4.getText()));
+                    if (esta) {
+                        JOptionPane.showMessageDialog(this, "El elemento " + jTextField4.getText()
+                                + " fue eliminado exitosamente",
+                                "ELIMINACIÓN EXITOSA", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El elemento " + jTextField4.getText()
+                                + " no estaba en el arbol",
+                                "NO ENCONTRADO", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Aun no se ha creado ningun arbol B",
+                            "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes de 0",
+                        "INGRESE DATOS VALIDOS", JOptionPane.WARNING_MESSAGE);
+
+            }
+            jTextField4.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar algun dato en el campo",
+                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }
+    
+    
+  
+    
 }
