@@ -52,6 +52,7 @@ public class Raiz {
                 if (primero.claves[i] == 0) {
                     primero.claves[i] = clave;
                     listaClaves.add(clave);
+                    System.out.println("Listica insertarNodo " + listaClaves);
                     j = i;
                     ordenarClaves(primero.claves, 6);
                     break;
@@ -289,6 +290,7 @@ public class Raiz {
         primero = new Nodo();
         primero.hoja = false;
         for (int i = 0; i < aux.size(); i++) {
+            System.out.println("Entró al for eliminar");
             int claveNueva = aux.get(i);
             insertarNodo(claveNueva);
         }
@@ -335,6 +337,7 @@ public class Raiz {
 
     public String impresion() {
         String a = imprimirArbol(primero);
+        System.out.println("Listica" + listaClaves);
         nivel = 1;
         imprimir = 1;
         return arbol;

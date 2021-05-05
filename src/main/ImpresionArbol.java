@@ -8,16 +8,20 @@ package main;
  */
 public class ImpresionArbol extends javax.swing.JFrame {
 
-    Raiz raiz1;
+    Raiz raiz1 = new Raiz(2);
     InterfazArbol bool = new InterfazArbol();
-    
+
     /**
      * Creates new form ImpresionArbol
      */
     public ImpresionArbol() {
-
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+
+    public javax.swing.JTextArea getTableroImpresion() {
+        return TableroImpresion;
     }
 
     /**
@@ -127,18 +131,12 @@ public class ImpresionArbol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        setVisible(false);
-        InterfazArbol menu = new InterfazArbol();
-        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TableroImpresion;
@@ -149,9 +147,9 @@ public class ImpresionArbol extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public void VerArbol() {
+    /*public void verArbol() {
         raiz1.arbol = "";
-        if (bool.listo) {
+        if (!bool.listo) {
             String raiz = "raiz [ ";
             for (int i = 0; i < raiz1.primero.claves.length && raiz1.primero.claves[i] != 0; i++) {
                 raiz += raiz1.primero.claves[i] + ", ";
@@ -160,10 +158,7 @@ public class ImpresionArbol extends javax.swing.JFrame {
             raiz += raiz1.impresion();
             TableroImpresion.setText(raiz);
             System.out.println(raiz);
-
         }
-
         this.setVisible(true);
-    }
-
+    }*/
 }
