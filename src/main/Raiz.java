@@ -13,16 +13,13 @@ public class Raiz {
     public static int orden;
     public Nodo primero;
     public boolean raiz;
-    public static int nivel = 1;
-    public static int imprimir = 1;
-    public static String arbol = "";
+    public int nivel = 1;
+    public int imprimir = 1;
+    public String arbol = "";
     public static ArrayList<Integer> listaClaves;
 
     public Raiz(int orden) {
-        //this.nivel = 1;
-        //this.imprimir = 1;
-        //this.arbol = "";
-        this.orden = orden;
+        Raiz.orden = orden;
         primero = new Nodo();
         raiz = true;
         listaClaves = new ArrayList<>();
@@ -52,7 +49,6 @@ public class Raiz {
                 if (primero.claves[i] == 0) {
                     primero.claves[i] = clave;
                     listaClaves.add(clave);
-                    System.out.println("Listica insertarNodo " + listaClaves);
                     j = i;
                     ordenarClaves(primero.claves, 6);
                     break;
@@ -212,11 +208,11 @@ public class Raiz {
             nodo.claves[orden + 1 + i] = 0;
         }
         nodo.claves[0] = nodo.claves[orden];
-        nodo.claves[orden] = 0; //En el padre soloqueda el valor que subió
+        nodo.claves[orden] = 0;
 
-        nodo.hijos[0] = izquierdo; //asigna al noso el nuevo hijo izquierdo
+        nodo.hijos[0] = izquierdo;
         nodo.hijos[0].padre = nodo;
-        nodo.hijos[1] = derecho; //asigna al nodo el nuevo hijo derecho
+        nodo.hijos[1] = derecho;
         nodo.hijos[1].padre = nodo;
         setHoja(primero);
         ordenarNodos(nodo);
@@ -269,6 +265,12 @@ public class Raiz {
         }
     }
 
+    /**
+     * Elimina el nodo con la clave especificada. Recorre la estructura hasta
+     * encontrar el nodo donde está alojado el valor.
+     *
+     * @param clave La clave del nodo a eliminar
+     */
     public void eliminar(int clave) {
         boolean encontrado = false;
         int pos = 0;
@@ -290,12 +292,18 @@ public class Raiz {
         primero = new Nodo();
         primero.hoja = false;
         for (int i = 0; i < aux.size(); i++) {
-            System.out.println("Entró al for eliminar");
             int claveNueva = aux.get(i);
             insertarNodo(claveNueva);
         }
     }
 
+    /**
+     * Busca el nodo con la clave especificada. Recorre la estructura hasta
+     * encontrar el nodo donde está alojada la clave.
+     *
+     * @param clave La clave del nodo a buscar
+     * @return Verdadero si encuentra el dato
+     */
     public boolean buscar(int clave) {
         for (int i = 0; i < listaClaves.size(); i++) {
             if (listaClaves.get(i) == clave) {
@@ -307,6 +315,15 @@ public class Raiz {
         return false;
     }
 
+    /**
+     * Recorre los nodos y los sub-nodos de uno en uno para concatenarlos en un
+     * String y retornarlos para su impresión. Una vez más se aplica el concepto
+     * de recursividad cuando, una vez ha recorrido y almacenado todo el nodo,
+     * baja hasta los hijos para recorrerlos también.
+     *
+     * @param nodo El nodo inicial a recorrer. Usualmente es la raiz
+     * @return Una cadena de texto con todo el arbol
+     */
     public String imprimirArbol(Nodo nodo) {
         arbol += "\n";
         for (int i = 0; i < 2 * orden + 1; i++) {
@@ -320,7 +337,8 @@ public class Raiz {
                 imprimirArbol(nodo.hijos[i]);
             }
             arbol += "[ ";
-            for (int j = 0; j < nodo.hijos[i].claves.length && nodoVacio(nodo.hijos[i]); j++) {
+
+            for (int j = 0; nodo.hijos[i] != null && j < nodo.hijos[i].claves.length; j++) {
                 if (nodo.hijos[i].claves[j] != 0) {
                     arbol += nodo.hijos[i].claves[j] + ", ";
                 }
@@ -335,14 +353,27 @@ public class Raiz {
         return arbol;
     }
 
+    /**
+     * Su función es la de llamar al método imprimirArbol y reiniar los
+     * contadores de nivel e impresión. Ya que el método imprimirArbol maneja
+     * recursividad, es más eficiente usar un método externo para su llamada.
+     *
+     * @return La impresión del arbol
+     */
     public String impresion() {
         String a = imprimirArbol(primero);
-        System.out.println("Listica" + listaClaves);
         nivel = 1;
         imprimir = 1;
         return arbol;
     }
 
+    /**
+     * Es una función de manejo de errores, la cual valida que el elemento
+     * ingresado sea un valor numérico.
+     *
+     * @param str
+     * @return Verdadero si es un número. Falso de no ser así.
+     */
     public boolean numero(String str) {
         try {
             Integer.parseInt(str);

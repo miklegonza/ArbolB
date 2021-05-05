@@ -151,9 +151,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="jTextField1">
-              <Events>
-                <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jTextField1MouseDragged"/>
-              </Events>
             </Component>
             <Component class="keeptoo.KButton" name="CrearArbol">
               <Properties>
@@ -324,9 +321,6 @@
             <Component class="javax.swing.JTextField" name="jTextField4">
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField5">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="keeptoo.KButton" name="InsertarDato">
               <Properties>

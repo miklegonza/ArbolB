@@ -8,9 +8,6 @@ package main;
  */
 public class ImpresionArbol extends javax.swing.JFrame {
 
-    Raiz raiz1 = new Raiz(2);
-    InterfazArbol bool = new InterfazArbol();
-
     /**
      * Creates new form ImpresionArbol
      */
@@ -146,19 +143,4 @@ public class ImpresionArbol extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
     // End of variables declaration//GEN-END:variables
-
-    /*public void verArbol() {
-        raiz1.arbol = "";
-        if (!bool.listo) {
-            String raiz = "raiz [ ";
-            for (int i = 0; i < raiz1.primero.claves.length && raiz1.primero.claves[i] != 0; i++) {
-                raiz += raiz1.primero.claves[i] + ", ";
-            }
-            raiz += " ]\n";
-            raiz += raiz1.impresion();
-            TableroImpresion.setText(raiz);
-            System.out.println(raiz);
-        }
-        this.setVisible(true);
-    }*/
 }
