@@ -9,12 +9,11 @@ import javax.swing.JOptionPane;
  * @author Rober Alexander Martinez
  */
 public class InterfazArbol extends javax.swing.JFrame {
-
+    Raiz datos;
     Raiz raiz;
     boolean listo = false;
     boolean existe = false;
     Raiz raizAux = new Raiz(2);
-    Raiz datos = new Raiz(2);
     public InterfazArbol() {
         initComponents();
         setLocationRelativeTo(null);
@@ -302,7 +301,9 @@ public class InterfazArbol extends javax.swing.JFrame {
 
     private void VerArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbolActionPerformed
         ImpresionArbol impre = new ImpresionArbol();
+        impre.VerArbol();
         impre.setVisible(true);
+        
     }//GEN-LAST:event_VerArbolActionPerformed
 
     private void InsertarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarDatoActionPerformed

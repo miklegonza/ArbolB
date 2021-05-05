@@ -13,19 +13,19 @@ public class Raiz {
     public static int orden;
     public Nodo primero;
     public boolean raiz;
-    public int nivel;
-    public int imprimir;
+    public static int nivel = 1;
+    public static int imprimir =1;
     public static String arbol = "";
     public static ArrayList<Integer> listaClaves;
     
     public Raiz(int orden) {
-        this.nivel = 1;
-        this.imprimir = 1;
-        this.arbol = "";
-        Raiz.orden = orden;
-        this.primero = new Nodo();
-        this.raiz = true;
-        this.listaClaves = new ArrayList<>();
+        //this.nivel = 1;
+        //this.imprimir = 1;
+        //this.arbol = "";
+        this.orden = orden;
+        primero = new Nodo();
+        raiz = true;
+        listaClaves = new ArrayList<>();
     }
     
     /**
@@ -53,7 +53,7 @@ public class Raiz {
                     primero.claves[i] = clave;
                     listaClaves.add(clave);
                     j = i;
-                    ordenarClaves(primero.claves);
+                    ordenarClaves(primero.claves,6);
                     break;
                 }
             }
@@ -79,7 +79,7 @@ public class Raiz {
             for (int i = 0; i <= 2 * orden; i++) {
                 if (padre.claves[i] == 0) {
                     padre.claves[i] = clave;
-                    ordenarClaves(padre.claves);
+                    ordenarClaves(padre.claves,6);
                     listaClaves.add(clave);
                     if (i == 2 * orden)
                         dividir(padre);
@@ -103,11 +103,11 @@ public class Raiz {
      * 
      * @param claves El arreglo a ordenar
      */
-    public void ordenarClaves(int[] claves) {
-        int counter = 0;
+    public void ordenarClaves(int[] claves,int counter) {
+       counter = 0;
         for (int i = 0; i < claves.length; i++) {
             if (claves[i] != 0)
-                counter++;
+               counter++;
             else
                 break;
         }
@@ -225,7 +225,7 @@ public class Raiz {
                     nodo.padre.claves[i] = nodo.claves[0];
                     logrado = true;
                     nodo.claves[0] = 0;
-                    ordenarClaves(nodo.padre.claves);
+                    ordenarClaves(nodo.padre.claves,5);
                 }
             }
             int posicion = 0;
@@ -256,7 +256,7 @@ public class Raiz {
                 j++;
             }
             temp.hijos[j] = null;
-            ordenarClaves(temp.claves);
+            ordenarClaves(temp.claves,5);
             ordenarNodos(temp);
             if (temp.claves[2 * orden] != 0)
                 dividir(temp);
@@ -302,7 +302,7 @@ public class Raiz {
     public String imprimirArbol(Nodo nodo) {
         arbol += "\n";
         for (int i = 0; i < 2 * orden + 1; i++) {
-            if (nodoVacio(nodo.hijos[i])) {
+           /* if (nodoVacio(nodo.hijos[i])) {
                 if (i == 0) {
                     nivel++;
                     imprimir = 1;
@@ -310,16 +310,35 @@ public class Raiz {
                     imprimir++;
                 }
                 imprimirArbol(nodo.hijos[i]);
-            }
+            }*/
+           
+           if (nodo.hijos[i]!=null){
+                if (i == 0) {
+                    nivel++;
+                    imprimir = 1;
+                } else {
+                    imprimir ++;
+                }
+                imprimirArbol(nodo.hijos[i]);
+           }
             arbol += "[ ";
-            for (int j = 0; j < nodo.hijos[i].claves.length && nodoVacio(nodo.hijos[i]); j++) {
+            /*for (int j = 0; j < nodo.hijos[i].claves.length && nodoVacio(nodo.hijos[i]); j++) {
                 if (nodo.hijos[i].claves[j] != 0)
                     arbol += nodo.hijos[i].claves[j] + ", ";
+            }*/
+            
+            for (int j =0; nodo.hijos[i]!=null && j<nodo.hijos[i].claves.length;j++){
+                if (nodo.hijos[i].claves[j] !=0){
+                    arbol +=nodo.hijos[i].claves[j] + ", ";
+                }
             }
+            
             arbol += " ]";
         }
-        if (arbol.length() > (2 * orden + 3) * 4)
+        if (arbol.length() > (2 * orden + 3) * 4){
             System.out.println(arbol);
+        return arbol;
+    }
         return arbol;
     }
     
@@ -327,7 +346,7 @@ public class Raiz {
         String a = imprimirArbol(primero);
         nivel = 1;
         imprimir = 1;
-        return a;
+        return arbol;
     }
     
     public boolean numero(String str) {

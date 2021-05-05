@@ -8,9 +8,9 @@ package main;
  */
 public class ImpresionArbol extends javax.swing.JFrame {
 
-    Raiz raiz1 = new Raiz(2);
+    Raiz raiz1;
     InterfazArbol bool = new InterfazArbol();
-    boolean ya = false;
+    
     /**
      * Creates new form ImpresionArbol
      */
@@ -32,7 +32,7 @@ public class ImpresionArbol extends javax.swing.JFrame {
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        TableroImpresion = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         Volver = new keeptoo.KButton();
 
@@ -47,12 +47,12 @@ public class ImpresionArbol extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("El arbol representado graficamente se observa de la siguiente manera: ");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setCaretColor(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jTextArea1);
+        TableroImpresion.setEditable(false);
+        TableroImpresion.setBackground(new java.awt.Color(255, 255, 255));
+        TableroImpresion.setColumns(20);
+        TableroImpresion.setRows(5);
+        TableroImpresion.setCaretColor(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(TableroImpresion);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("[X] Cerrar");
@@ -141,24 +141,25 @@ public class ImpresionArbol extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea TableroImpresion;
     private keeptoo.KButton Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private keeptoo.KGradientPanel kGradientPanel1;
     // End of variables declaration//GEN-END:variables
 
     public void VerArbol() {
         raiz1.arbol = "";
-        if (ya) {
+        if (bool.listo) {
             String raiz = "raiz [ ";
             for (int i = 0; i < raiz1.primero.claves.length && raiz1.primero.claves[i] != 0; i++) {
                 raiz += raiz1.primero.claves[i] + ", ";
             }
             raiz += " ]\n";
             raiz += raiz1.impresion();
-            jTextArea1.setText(raiz);
+            TableroImpresion.setText(raiz);
+            System.out.println(raiz);
 
         }
 
