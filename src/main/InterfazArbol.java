@@ -9,11 +9,13 @@ import javax.swing.JOptionPane;
  * @author Rober Alexander Martinez
  */
 public class InterfazArbol extends javax.swing.JFrame {
-    Raiz datos;
+
+    //Raiz datos;
     Raiz raiz;
     boolean listo = false;
     boolean existe = false;
     Raiz raizAux = new Raiz(2);
+
     public InterfazArbol() {
         initComponents();
         setLocationRelativeTo(null);
@@ -300,10 +302,9 @@ public class InterfazArbol extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearArbolActionPerformed
 
     private void VerArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbolActionPerformed
-        ImpresionArbol impre = new ImpresionArbol();
-        impre.VerArbol();
-        impre.setVisible(true);
-        
+
+        //impre.verArbol();
+        verArbol();
     }//GEN-LAST:event_VerArbolActionPerformed
 
     private void InsertarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarDatoActionPerformed
@@ -414,7 +415,7 @@ public class InterfazArbol extends javax.swing.JFrame {
             boolean numero = raizAux.numero(jTextField1.getText());
             if (numero) {
                 if (!(Integer.parseInt(jTextField1.getText()) < 1)) {
-                   // datos = new Lista();
+                    // datos = new Lista();
                     existe = true;
                     raiz = new Raiz(Integer.parseInt(jTextField1.getText()));
                     JOptionPane.showMessageDialog(this, "Ha sido creado un nuevo arbol B de grado "
@@ -443,8 +444,8 @@ public class InterfazArbol extends javax.swing.JFrame {
             if (numero) {
                 boolean adentro = false;
                 if (existe) {
-                    for (int i = 0; i < datos.listaClaves.size(); i++) {
-                        if (datos.listaClaves.get(i) == Integer.parseInt(jTextField3.getText())) {
+                    for (int i = 0; i < Raiz.listaClaves.size(); i++) {
+                        if (Raiz.listaClaves.get(i) == Integer.parseInt(jTextField3.getText())) {
                             adentro = true;
                         }
                     }
@@ -491,8 +492,8 @@ public class InterfazArbol extends javax.swing.JFrame {
         if (!jTextField4.getText().equals("")) {
             if (numero) {
                 if (listo) {
-                    for (int i = 0; i < datos.listaClaves.size(); i++) {
-                        if (datos.listaClaves.get(i) == Integer.parseInt(jTextField4.getText())) {
+                    for (int i = 0; i < Raiz.listaClaves.size(); i++) {
+                        if (Raiz.listaClaves.get(i) == Integer.parseInt(jTextField4.getText())) {
                             esta = true;
                         }
                     }
@@ -523,8 +524,23 @@ public class InterfazArbol extends javax.swing.JFrame {
         }
 
     }
-    
-    
-  
-    
+
+    public void verArbol() {
+        ImpresionArbol impre = new ImpresionArbol();
+        raiz.arbol = "";
+        if (listo) {
+            String raiz11 = "raiz [ ";
+            for (int i = 0; i < raiz.primero.claves.length && raiz.primero.claves[i] != 0; i++) {
+                raiz11 += raiz.primero.claves[i] + ", ";
+            }
+            raiz11 += " ]\n";
+            raiz11 += raiz.impresion();
+            impre.getTableroImpresion().setText(raiz11);
+            System.out.println(raiz11);
+
+            impre.setVisible(true);
+        } else {
+            System.out.println("Error");
+        }
+    }
 }
