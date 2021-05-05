@@ -15,7 +15,7 @@ public class Raiz {
     public boolean raiz;
     public int nivel = 1;
     public int imprimir = 1;
-    public String arbol = "";
+    public static String arbol = "";
     public static ArrayList<Integer> listaClaves;
 
     public Raiz(int orden) {
@@ -327,7 +327,7 @@ public class Raiz {
     public String imprimirArbol(Nodo nodo) {
         arbol += "\n";
         for (int i = 0; i < 2 * orden + 1; i++) {
-            if (nodoVacio(nodo.hijos[i])) {
+            if (nodo.hijos[i] != null) {
                 if (i == 0) {
                     nivel++;
                     imprimir = 1;

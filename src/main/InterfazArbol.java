@@ -377,7 +377,7 @@ public class InterfazArbol extends javax.swing.JFrame {
     }
 
     public void crearArbol() {
-        raiz.arbol = "";
+        Raiz.arbol = "";
         if (!jTextField1.getText().equals("")) {
             boolean numero = raizAux.numero(jTextField1.getText());
             if (numero) {
