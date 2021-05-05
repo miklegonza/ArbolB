@@ -15,8 +15,8 @@ public class Raiz {
     public boolean raiz;
     public int nivel;
     public int imprimir;
-    public String arbol;
-    public ArrayList<Integer> listaClaves;
+    public static String arbol = "";
+    public static ArrayList<Integer> listaClaves;
     
     public Raiz(int orden) {
         this.nivel = 1;

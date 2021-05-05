@@ -9,7 +9,7 @@ package main;
 public class Nodo {
     public int[] claves;
     public Nodo[] hijos;
-    public int numClaves;
+    public static int numClaves;
     public boolean hoja = false;
     public int lleno = 0;
     public Nodo padre;

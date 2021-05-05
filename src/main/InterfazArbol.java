@@ -14,9 +14,10 @@ public class InterfazArbol extends javax.swing.JFrame {
     boolean listo = false;
     boolean existe = false;
     Raiz raizAux = new Raiz(2);
-
+    Raiz datos = new Raiz(2);
     public InterfazArbol() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -50,7 +51,9 @@ public class InterfazArbol extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 51, 102));
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 0));
 
-        Crear.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Crear Arbol"));
+        Crear.setBackground(new java.awt.Color(255, 255, 255));
+        Crear.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Crear Arbol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        Crear.setForeground(new java.awt.Color(255, 255, 255));
         Crear.setToolTipText("");
         Crear.setkEndColor(new java.awt.Color(0, 102, 204));
         Crear.setkStartColor(new java.awt.Color(0, 0, 0));
@@ -98,7 +101,9 @@ public class InterfazArbol extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        kGradientPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Visualizar"));
+        kGradientPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        kGradientPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Visualizar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        kGradientPanel2.setForeground(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setkEndColor(new java.awt.Color(0, 102, 204));
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 0));
 
@@ -132,7 +137,8 @@ public class InterfazArbol extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        kGradientPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
+        kGradientPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Opciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        kGradientPanel3.setForeground(new java.awt.Color(255, 255, 255));
         kGradientPanel3.setkEndColor(new java.awt.Color(0, 102, 204));
         kGradientPanel3.setkStartColor(new java.awt.Color(0, 0, 0));
 
@@ -218,6 +224,7 @@ public class InterfazArbol extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        BotonCerrar.setForeground(new java.awt.Color(255, 255, 255));
         BotonCerrar.setText("[X] Cerrar");
         BotonCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -226,6 +233,7 @@ public class InterfazArbol extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ARBOL B");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
@@ -369,7 +377,7 @@ public class InterfazArbol extends javax.swing.JFrame {
 
     public void BuscarDato() {
         if (!jTextField5.getText().equals("")) {
-            boolean numero = raizAux.esNumero(jTextField5.getText());
+            boolean numero = raizAux.numero(jTextField5.getText());
             if (numero) {
                 if (listo) {
                     boolean esta = raiz.buscar(Integer.parseInt(jTextField5.getText()));
@@ -402,10 +410,10 @@ public class InterfazArbol extends javax.swing.JFrame {
     public void CrearArbol() {
         raiz.arbol = "";
         if (!jTextField1.getText().equals("")) {
-            boolean numero = raizAux.esNumero(jTextField1.getText());
+            boolean numero = raizAux.numero(jTextField1.getText());
             if (numero) {
                 if (!(Integer.parseInt(jTextField1.getText()) < 1)) {
-                    datos = new Lista();
+                   // datos = new Lista();
                     existe = true;
                     raiz = new Raiz(Integer.parseInt(jTextField1.getText()));
                     JOptionPane.showMessageDialog(this, "Ha sido creado un nuevo arbol B de grado "
@@ -434,8 +442,8 @@ public class InterfazArbol extends javax.swing.JFrame {
             if (numero) {
                 boolean adentro = false;
                 if (existe) {
-                    for (int i = 0; i < datos.ingresados.size(); i++) {
-                        if (datos.ingresados.get(i) == Integer.parseInt(jTextField3.getText())) {
+                    for (int i = 0; i < datos.listaClaves.size(); i++) {
+                        if (datos.listaClaves.get(i) == Integer.parseInt(jTextField3.getText())) {
                             adentro = true;
                         }
                     }
@@ -482,8 +490,8 @@ public class InterfazArbol extends javax.swing.JFrame {
         if (!jTextField4.getText().equals("")) {
             if (numero) {
                 if (listo) {
-                    for (int i = 0; i < datos.ingresados.size(); i++) {
-                        if (datos.ingresados.get(i) == Integer.parseInt(jTextField4.getText())) {
+                    for (int i = 0; i < datos.listaClaves.size(); i++) {
+                        if (datos.listaClaves.get(i) == Integer.parseInt(jTextField4.getText())) {
                             esta = true;
                         }
                     }

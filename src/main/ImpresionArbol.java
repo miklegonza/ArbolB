@@ -1,22 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 /**
  *
- * @author alexa
+ * @author Michael Gonzalez
+ * @author Michael Betancourt
+ * @author Rober Alexander Martinez
  */
 public class ImpresionArbol extends javax.swing.JFrame {
+
     Raiz raiz1 = new Raiz(2);
     InterfazArbol bool = new InterfazArbol();
+    boolean ya = false;
     /**
      * Creates new form ImpresionArbol
      */
     public ImpresionArbol() {
+
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -33,7 +34,7 @@ public class ImpresionArbol extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        kButton1 = new keeptoo.KButton();
+        Volver = new keeptoo.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -41,14 +42,19 @@ public class ImpresionArbol extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 51, 153));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("El arbol representado graficamente se observa de la siguiente manera: ");
 
         jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setCaretColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("[X] Cerrar");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -56,16 +62,16 @@ public class ImpresionArbol extends javax.swing.JFrame {
             }
         });
 
-        kButton1.setText("Regresar a menu principal");
-        kButton1.setkEndColor(new java.awt.Color(0, 0, 0));
-        kButton1.setkHoverEndColor(new java.awt.Color(0, 0, 0));
-        kButton1.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        kButton1.setkHoverStartColor(new java.awt.Color(0, 0, 102));
-        kButton1.setkSelectedColor(new java.awt.Color(0, 0, 0));
-        kButton1.setkStartColor(new java.awt.Color(0, 51, 153));
-        kButton1.addActionListener(new java.awt.event.ActionListener() {
+        Volver.setText("Regresar a menu principal");
+        Volver.setkEndColor(new java.awt.Color(0, 0, 0));
+        Volver.setkHoverEndColor(new java.awt.Color(0, 0, 0));
+        Volver.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        Volver.setkHoverStartColor(new java.awt.Color(0, 0, 102));
+        Volver.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        Volver.setkStartColor(new java.awt.Color(0, 51, 153));
+        Volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton1ActionPerformed(evt);
+                VolverActionPerformed(evt);
             }
         });
 
@@ -89,7 +95,7 @@ public class ImpresionArbol extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
         );
         kGradientPanel1Layout.setVerticalGroup(
@@ -102,7 +108,7 @@ public class ImpresionArbol extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -121,70 +127,42 @@ public class ImpresionArbol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kButton1ActionPerformed
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        setVisible(false);
+        InterfazArbol menu = new InterfazArbol();
+        menu.setVisible(true);
+    }//GEN-LAST:event_VolverActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImpresionArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImpresionArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImpresionArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImpresionArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ImpresionArbol().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private keeptoo.KButton Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private keeptoo.KButton kButton1;
     private keeptoo.KGradientPanel kGradientPanel1;
     // End of variables declaration//GEN-END:variables
 
-  public void VerArbol(){
-          raiz1.arbol = "";
-        if(bool.listo){
-        String raiz = "raiz [ ";
-        for(int i = 0; i < raiz1.primero.claves.length && raiz1.primero.claves[i] != 0; i++){
-            raiz += raiz1.primero.claves[i] + ", ";
+    public void VerArbol() {
+        raiz1.arbol = "";
+        if (ya) {
+            String raiz = "raiz [ ";
+            for (int i = 0; i < raiz1.primero.claves.length && raiz1.primero.claves[i] != 0; i++) {
+                raiz += raiz1.primero.claves[i] + ", ";
+            }
+            raiz += " ]\n";
+            raiz += raiz1.impresion();
+            jTextArea1.setText(raiz);
+
         }
-        raiz += " ]\n";
-        raiz += raiz1.impresion();
-        jTextArea1.setText(raiz);
-        }
+
         this.setVisible(true);
     }
 
 }
-
