@@ -327,7 +327,7 @@ public class Raiz {
     public String imprimirArbol(Nodo nodo) {
         arbol += "\n";
         for (int i = 0; i < 2 * orden + 1; i++) {
-            if (nodo.hijos[i] != null) {
+            if (nodoVacio(nodo.hijos[i])) {
                 if (i == 0) {
                     nivel++;
                     imprimir = 1;
@@ -337,11 +337,13 @@ public class Raiz {
                 imprimirArbol(nodo.hijos[i]);
             }
             arbol += "[ ";
+
             for (int j = 0; nodo.hijos[i] != null && j < nodo.hijos[i].claves.length; j++) {
                 if (nodo.hijos[i].claves[j] != 0) {
                     arbol += nodo.hijos[i].claves[j] + ", ";
                 }
             }
+
             arbol += " ]";
         }
         if (arbol.length() > (2 * orden + 3) * 4) {
