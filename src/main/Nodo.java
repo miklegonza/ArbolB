@@ -19,4 +19,5 @@ public class Nodo {
         hijos = new Nodo[Raiz.orden * 2 + 3];
         claves = new int[Raiz.orden * 2 + 1];
     }
+    
 }

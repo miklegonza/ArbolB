@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
  */
 public class InterfazArbol extends javax.swing.JFrame {
 
-    //Raiz datos;
     Raiz raiz;
     boolean listo = false;
     boolean existe = false;
@@ -58,12 +57,6 @@ public class InterfazArbol extends javax.swing.JFrame {
         Crear.setToolTipText("");
         Crear.setkEndColor(new java.awt.Color(0, 102, 204));
         Crear.setkStartColor(new java.awt.Color(0, 0, 0));
-
-        jTextField1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jTextField1MouseDragged(evt);
-            }
-        });
 
         CrearArbol.setText("Crear Nuevo Arbol");
         CrearArbol.setkBackGroundColor(new java.awt.Color(0, 102, 204));
@@ -142,12 +135,6 @@ public class InterfazArbol extends javax.swing.JFrame {
         kGradientPanel3.setForeground(new java.awt.Color(255, 255, 255));
         kGradientPanel3.setkEndColor(new java.awt.Color(0, 102, 204));
         kGradientPanel3.setkStartColor(new java.awt.Color(0, 0, 0));
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
 
         InsertarDato.setText("Insertar Dato");
         InsertarDato.setkBackGroundColor(new java.awt.Color(0, 102, 204));
@@ -293,17 +280,11 @@ public class InterfazArbol extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_BotonCerrarMouseClicked
 
-    private void jTextField1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1MouseDragged
-
     private void CrearArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearArbolActionPerformed
-        CrearArbol();
+        crearArbol();
     }//GEN-LAST:event_CrearArbolActionPerformed
 
     private void VerArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerArbolActionPerformed
-
-        //impre.verArbol();
         verArbol();
     }//GEN-LAST:event_VerArbolActionPerformed
 
@@ -316,13 +297,8 @@ public class InterfazArbol extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarDatoActionPerformed
 
     private void BuscarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDatoActionPerformed
-        BuscarDato();
-
+        buscarDato();
     }//GEN-LAST:event_BuscarDatoActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,23 +316,16 @@ public class InterfazArbol extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException 
+                | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfazArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfazArbol().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new InterfazArbol().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -377,7 +346,7 @@ public class InterfazArbol extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 
-    public void BuscarDato() {
+    public void buscarDato() {
         if (!jTextField5.getText().equals("")) {
             boolean numero = raizAux.numero(jTextField5.getText());
             if (numero) {
@@ -386,54 +355,50 @@ public class InterfazArbol extends javax.swing.JFrame {
                     if (esta) {
                         JOptionPane.showMessageDialog(this, "El elemento "
                                 + jTextField5.getText() + " si se encuentra en el arbol B",
-                                "DATO ENCONTRADO!!!", JOptionPane.WARNING_MESSAGE);
+                                "DATO ENCONTRADO!!!", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(this, "El elemento "
                                 + jTextField5.getText() + " no se encuentra en el arbol B",
-                                "DATO NO ENCONTRADO!!!", JOptionPane.WARNING_MESSAGE);
+                                "DATO NO ENCONTRADO!!!", JOptionPane.ERROR_MESSAGE);
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(this, "Aun no se ha creado ningun arbol",
                             "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
                 }
-
             } else {
                 JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes a cero",
-                        "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                        "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe digitar algun numero en el campo",
-                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                    "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
         }
         jTextField5.setText("");
     }
 
-    public void CrearArbol() {
+    public void crearArbol() {
         raiz.arbol = "";
         if (!jTextField1.getText().equals("")) {
             boolean numero = raizAux.numero(jTextField1.getText());
             if (numero) {
                 if (!(Integer.parseInt(jTextField1.getText()) < 1)) {
-                    // datos = new Lista();
                     existe = true;
                     raiz = new Raiz(Integer.parseInt(jTextField1.getText()));
                     JOptionPane.showMessageDialog(this, "Ha sido creado un nuevo arbol B de grado "
                             + jTextField1.getText(),
-                            "CREACIÓN EXITOSA", JOptionPane.WARNING_MESSAGE);
+                            "CREACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE);
                     listo = true;
                 } else {
                     JOptionPane.showMessageDialog(this, "Debe ingresar un grado entero, mayor o igual a 1",
-                            "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
-
+                            "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Debe ingresar un grado entero, mayor o igual a 1",
-                        "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                        "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar algun dato en el campo de texto",
-                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                    "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
         }
         jTextField1.setText("");
     }
@@ -457,7 +422,7 @@ public class InterfazArbol extends javax.swing.JFrame {
                                 raiz.insertarNodo(Integer.parseInt(jTextField3.getText()));
                                 JOptionPane.showMessageDialog(this, "El elemento "
                                         + jTextField3.getText() + " ha sido ingresado de forma exitosa al arbol B",
-                                        "Inserción Exitosa", JOptionPane.WARNING_MESSAGE);
+                                        "Inserción Exitosa", JOptionPane.INFORMATION_MESSAGE);
                             } else {
                                 JOptionPane.showMessageDialog(this, "No ha sido creado ningun arbol B",
                                         "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
@@ -473,15 +438,15 @@ public class InterfazArbol extends javax.swing.JFrame {
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "El elemento ya se ha ingresado anteriormente",
-                            "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                            "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes de 0",
-                        "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                        "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar datos en el campo",
-                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                    "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
         }
         jTextField3.setText("");
     }
@@ -501,7 +466,7 @@ public class InterfazArbol extends javax.swing.JFrame {
                     if (esta) {
                         JOptionPane.showMessageDialog(this, "El elemento " + jTextField4.getText()
                                 + " fue eliminado exitosamente",
-                                "ELIMINACIÓN EXITOSA", JOptionPane.WARNING_MESSAGE);
+                                "ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(this, "El elemento " + jTextField4.getText()
                                 + " no estaba en el arbol",
@@ -509,18 +474,16 @@ public class InterfazArbol extends javax.swing.JFrame {
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Aun no se ha creado ningun arbol B",
-                            "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                            "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
                 }
-
             } else {
                 JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes de 0",
-                        "INGRESE DATOS VALIDOS", JOptionPane.WARNING_MESSAGE);
-
+                        "INGRESE DATOS VALIDOS", JOptionPane.ERROR_MESSAGE);
             }
             jTextField4.setText("");
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar algun dato en el campo",
-                    "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
+                    "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -540,7 +503,8 @@ public class InterfazArbol extends javax.swing.JFrame {
 
             impre.setVisible(true);
         } else {
-            System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "No hay ningún árbol que mostrar",
+                    "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
