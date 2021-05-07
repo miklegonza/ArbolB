@@ -4,9 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Repositorios/GitHub/ArbolB/src/main/Raiz.java</file>
+<<<<<<< Updated upstream
             <file>file:/D:/Repositorios/GitHub/ArbolB/src/main/ImpresionArbol.java</file>
             <file>file:/D:/Repositorios/GitHub/ArbolB/src/main/InterfazArbol.java</file>
             <file>file:/D:/Repositorios/GitHub/ArbolB/src/main/Nodo.java</file>
+=======
+            <file>file:/D:/Repositorios/GitHub/ArbolB/src/main/InterfazArbol.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
