@@ -1,9 +1,9 @@
 # Proyecto Árbol B
 ``` Análisis y Diseño de Algoritmos ```
 
-* nmms creo que no es así
-* Si es así weon
 
-### Integrantes:
-* Rober Alexander Martínez Lagos ()
-* Michael Steaven González Vargas ()
+
+### Contribuyentes
+* Rober Alexander Martínez Lagos - [@Alexmart2001](https://github.com/Alexmart2001)
+* Michael Steaven González Vargas - [@miklegonza](https://github.com/miklegonza)
+* Michael Arturo Betancourt Contreras - [@MichaelBetancourt](https://github.com/MichaelBetancourt)
