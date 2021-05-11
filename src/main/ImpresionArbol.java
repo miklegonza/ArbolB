@@ -42,6 +42,16 @@ public class ImpresionArbol extends javax.swing.JFrame {
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 51, 153));
+        kGradientPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                kGradientPanel1MouseDragged(evt);
+            }
+        });
+        kGradientPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                kGradientPanel1MousePressed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -134,6 +144,14 @@ public class ImpresionArbol extends javax.swing.JFrame {
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         this.dispose();
     }//GEN-LAST:event_VolverActionPerformed
+
+    private void kGradientPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1MouseDragged
+        new keeptoo.Drag(kGradientPanel1).moveWindow(evt);
+    }//GEN-LAST:event_kGradientPanel1MouseDragged
+
+    private void kGradientPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1MousePressed
+        new keeptoo.Drag(kGradientPanel1).onPress(evt);
+    }//GEN-LAST:event_kGradientPanel1MousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TableroImpresion;

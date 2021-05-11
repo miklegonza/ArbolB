@@ -50,6 +50,16 @@ public class InterfazArbol extends javax.swing.JFrame {
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 51, 102));
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 0));
+        kGradientPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                kGradientPanel1MouseDragged(evt);
+            }
+        });
+        kGradientPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                kGradientPanel1MousePressed(evt);
+            }
+        });
 
         Crear.setBackground(new java.awt.Color(255, 255, 255));
         Crear.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Crear Arbol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -299,6 +309,14 @@ public class InterfazArbol extends javax.swing.JFrame {
     private void BuscarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDatoActionPerformed
         buscarDato();
     }//GEN-LAST:event_BuscarDatoActionPerformed
+
+    private void kGradientPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1MouseDragged
+        new keeptoo.Drag(kGradientPanel1).moveWindow(evt);
+    }//GEN-LAST:event_kGradientPanel1MouseDragged
+
+    private void kGradientPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1MousePressed
+        new keeptoo.Drag(kGradientPanel1).onPress(evt);
+    }//GEN-LAST:event_kGradientPanel1MousePressed
 
     /**
      * @param args the command line arguments
