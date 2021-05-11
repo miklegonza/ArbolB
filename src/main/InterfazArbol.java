@@ -316,12 +316,12 @@ public class InterfazArbol extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException 
+        } catch (ClassNotFoundException | InstantiationException
                 | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfazArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -384,6 +384,11 @@ public class InterfazArbol extends javax.swing.JFrame {
                 if (!(Integer.parseInt(jTextField1.getText()) < 1)) {
                     existe = true;
                     raiz = new Raiz(Integer.parseInt(jTextField1.getText()));
+                    if (Raiz.orden > 10000) {
+                        JOptionPane.showMessageDialog(null, "Este arbol procesa un maximo de 10000", "ERROR CRITICO", JOptionPane.ERROR_MESSAGE);
+                        jTextField1.setText("");
+                        return;
+                    }
                     JOptionPane.showMessageDialog(this, "Ha sido creado un nuevo arbol B de grado "
                             + jTextField1.getText(),
                             "CREACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE);
@@ -492,6 +497,10 @@ public class InterfazArbol extends javax.swing.JFrame {
         ImpresionArbol impre = new ImpresionArbol();
         raiz.arbol = "";
         if (listo) {
+            if (Raiz.orden > 1000 && Raiz.orden <= 10000) {
+                JOptionPane.showMessageDialog(null, "para ver todos los datos en consola "
+                        + "por favor pulse click derecho en la consola y seleccione wrap text", "VISTA EN CONSOLA", JOptionPane.INFORMATION_MESSAGE);
+            }
             String raiz11 = "raiz [ ";
             for (int i = 0; i < raiz.primero.claves.length && raiz.primero.claves[i] != 0; i++) {
                 raiz11 += raiz.primero.claves[i] + ", ";
