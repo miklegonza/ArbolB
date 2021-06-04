@@ -25,12 +25,15 @@ public class InterfazArbol extends javax.swing.JFrame {
     }
     
     private void pruebas() {
+        //int[] arr = {32, 38, 45, 48, 49, 29, 33, 6, 63, 82, 31, 37, 42, 87, 91, 92, 94, 96, 46, 69, 30, 56, 81};
         crearArbol("5");
         insertarDatos("5");
-        for (int i = 0; i < 30; i++) {
-            int dato = (int)(Math.random() * 100);
+        for (int i = 0; i < 50; i++) {
+            int dato = (int)(Math.random() * 1000);
             insertarDatos(dato + "");
         }
+        //for (int i : arr)
+        //    insertarDatos(i + "");
     }
 
     /**
@@ -414,45 +417,37 @@ public class InterfazArbol extends javax.swing.JFrame {
             boolean numero = raizAux.validarNumero(dato);
             if (numero) {
                 boolean adentro = false;
-                if (existe) {
+                if (existe)
                     for (int i = 0; i < Raiz.listaClaves.size(); i++) {
-                        if (Raiz.listaClaves.get(i) == Integer.parseInt(dato)) {
+                        if (Raiz.listaClaves.get(i) == Integer.parseInt(dato))
                             adentro = true;
-                        }
                     }
-                }
-                if (!adentro) {
-                    if (!dato.equals("")) {
-                        if (!dato.equals("0")) {
+                if (!adentro)
+                    if (!dato.equals(""))
+                        if (!dato.equals("0"))
                             if (listo) {
                                 raiz.insertarNodo(Integer.parseInt(dato));
-                                //JOptionPane.showMessageDialog(this, "El elemento "
-                                //        + dato + " ha sido ingresado de forma exitosa al arbol B",
-                                //        "Inserción Exitosa", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
+                                /*JOptionPane.showMessageDialog(this, "El elemento "
+                                        + dato + " ha sido ingresado de forma exitosa al arbol B",
+                                        "Inserción Exitosa", JOptionPane.INFORMATION_MESSAGE);*/
+                            } else
                                 JOptionPane.showMessageDialog(this, "No ha sido creado ningun arbol B",
                                         "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
-                            }
-                        } else {
+                        else
                             JOptionPane.showMessageDialog(this, "Ingrese datos distintos de 0",
                                     "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
-                        }
-                    } else {
+                    else
                         JOptionPane.showMessageDialog(this, "Debe ingresar datos en el campo",
                                 "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
-                    }
-                } else {
+                else
                     JOptionPane.showMessageDialog(this, "El elemento ya se ha ingresado anteriormente",
                             "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
+            } else
                 JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes de 0",
                         "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
+        } else
             JOptionPane.showMessageDialog(this, "Debe ingresar datos en el campo",
                     "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
-        }
         campoInsertar.setText("");
     }
 
@@ -460,31 +455,27 @@ public class InterfazArbol extends javax.swing.JFrame {
         boolean esta = false;
         boolean numero = raizAux.validarNumero(dato);
         if (!dato.equals("")) {
-            if (numero) {
+            if (numero)
                 if (listo) {
                     for (int i = 0; i < Raiz.listaClaves.size(); i++) {
-                        if (Raiz.listaClaves.get(i) == Integer.parseInt(dato)) {
+                        if (Raiz.listaClaves.get(i) == Integer.parseInt(dato))
                             esta = true;
-                        }
                     }
                     raiz.eliminar(Integer.parseInt(dato));
-                    if (esta) {
+                    if (esta)
                         JOptionPane.showMessageDialog(this, "El elemento " + dato
                                 + " fue eliminado exitosamente",
                                 "ELIMINACIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
+                    else
                         JOptionPane.showMessageDialog(this, "El elemento " + dato
                                 + " no estaba en el arbol",
                                 "NO ENCONTRADO", JOptionPane.WARNING_MESSAGE);
-                    }
-                } else {
+                } else
                     JOptionPane.showMessageDialog(this, "Aun no se ha creado ningun arbol B",
                             "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
+            else
                 JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes de 0",
                         "INGRESE DATOS VALIDOS", JOptionPane.ERROR_MESSAGE);
-            }
             campoEliminar.setText("");
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar algun dato en el campo",
@@ -495,26 +486,23 @@ public class InterfazArbol extends javax.swing.JFrame {
     public void buscarDato(String dato) {
         if (!dato.equals("")) {
             boolean numero = raizAux.validarNumero(dato);
-            if (numero) {
+            if (numero)
                 if (listo) {
                     boolean esta = raiz.buscar(Integer.parseInt(dato));
-                    if (esta) {
+                    if (esta)
                         JOptionPane.showMessageDialog(this, "El elemento "
                                 + dato + " si se encuentra en el arbol B",
                                 "DATO ENCONTRADO!!!", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
+                    else
                         JOptionPane.showMessageDialog(this, "El elemento "
                                 + dato + " no se encuentra en el arbol B",
                                 "DATO NO ENCONTRADO!!!", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
+                } else
                     JOptionPane.showMessageDialog(this, "Aun no se ha creado ningun arbol",
                             "ERROR CRITICO!!", JOptionPane.WARNING_MESSAGE);
-                }
-            } else {
+            else
                 JOptionPane.showMessageDialog(this, "Ingrese numeros enteros diferentes a cero",
                         "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
-            }
         } else {
             JOptionPane.showMessageDialog(this, "Debe digitar algun numero en el campo",
                     "ERROR CRITICO!!", JOptionPane.ERROR_MESSAGE);
@@ -524,20 +512,20 @@ public class InterfazArbol extends javax.swing.JFrame {
 
     public void verArbol() {
         ImpresionArbol impre = new ImpresionArbol();
-        raiz.arbol = "";
+        Raiz.arbol = "";
         if (listo) {
             if (Raiz.orden > 1000 && Raiz.orden <= 10000) {
                 JOptionPane.showMessageDialog(null, "para ver todos los datos en consola "
                         + "por favor pulse click derecho en la consola y seleccione wrap text", "VISTA EN CONSOLA", JOptionPane.INFORMATION_MESSAGE);
             }
-            String raiz11 = "raiz [ ";
+            String mensaje = "Raiz  [  ";
             for (int i = 0; i < raiz.primero.claves.length && raiz.primero.claves[i] != 0; i++) {
-                raiz11 += raiz.primero.claves[i] + "  ";
+                mensaje += raiz.primero.claves[i] + "  ";
             }
-            raiz11 += " ]\n";
-            raiz11 += raiz.impresion();
-            impre.getTableroImpresion().setText(raiz11);
-            System.out.println(raiz11);
+            mensaje += ']';
+            mensaje += raiz.impresion();
+            impre.getTableroImpresion().setText(mensaje);
+            System.out.println("\n" + mensaje);
 
             impre.setVisible(true);
         } else {

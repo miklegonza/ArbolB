@@ -54,9 +54,8 @@ public class Raiz {
                     break;
                 }
             }
-            if (j == 2 * orden) {
+            if (j == 2 * orden)
                 dividirNodos(primero);
-            }
         } else {
             setHoja(primero);
             insertarHijo(primero, clave);
@@ -79,9 +78,8 @@ public class Raiz {
                     padre.claves[i] = clave;
                     ordenarClaves(padre.claves);
                     listaClaves.add(clave);
-                    if (i == 2 * orden) {
+                    if (i == 2 * orden)
                         dividirNodos(padre);
-                    }
                     break;
                 }
             }
@@ -160,7 +158,6 @@ public class Raiz {
             }
             i++;
         }
-        //dividirArreglo(nodo.hijos, 0, orden);
     }
 
     /**
@@ -295,11 +292,10 @@ public class Raiz {
             }
         }
 
-        if (encontrado) {
+        if (encontrado)
             listaClaves.remove(pos);
-        } else {
+        else
             System.out.println("No encontrado");
-        }
 
         ArrayList<Integer> aux = listaClaves;
         listaClaves = new ArrayList<>();
@@ -350,15 +346,14 @@ public class Raiz {
                 }
                 imprimirArbol(nodo.hijos[i]);
             }
-            arbol += "[ ";
-
             for (int j = 0; nodo.hijos[i] != null && j < nodo.hijos[i].claves.length; j++) {
-                if (nodo.hijos[i].claves[j] != 0) {
-                    arbol += nodo.hijos[i].claves[j] + "  ";
-                }
+                arbol += "[ ";
+                if (nodo.hijos[i].claves[j] != 0)
+                    arbol += nodo.hijos[i].claves[j] + "";
+                else
+                    arbol += "   ";
+                arbol += " ] ";
             }
-
-            arbol += " ]";
         }
         if (arbol.length() > (2 * orden + 3) * 4) {
             System.out.println(arbol);

@@ -14,7 +14,6 @@ public class ImpresionArbol extends javax.swing.JFrame {
     public ImpresionArbol() {
         initComponents();
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public javax.swing.JTextArea getTableroImpresion() {
