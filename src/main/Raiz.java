@@ -42,7 +42,7 @@ public class Raiz {
      *
      * @param clave El valor a insertar en el nodo
      */
-    public void insertarNodo(int clave) {
+    public void insertarNodo(int clave) {  // O(N)
         if (!primero.hoja) {
             int j = 0;
             for (int i = 0; i < primero.claves.length; i++) {
