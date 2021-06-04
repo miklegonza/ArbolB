@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * @author alexa
  */
 public class ImpresionArbolTest {
-
+    
     public ImpresionArbolTest() {
     }
 
@@ -25,6 +25,7 @@ public class ImpresionArbolTest {
         JTextArea expResult = instance.getTableroImpresion();
         JTextArea result = instance.getTableroImpresion();
         assertEquals(expResult, result);
-        //fail("The test case is a prototype.");
+      //  fail("The test case is a prototype.");
     }
+    
 }

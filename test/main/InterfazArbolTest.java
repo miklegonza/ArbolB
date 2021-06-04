@@ -22,7 +22,7 @@ public class InterfazArbolTest {
         System.out.println("main");
         String[] args = null;
         InterfazArbol.main(args);
-        //fail("The test case is a prototype.");
+      //  fail("The test case is a prototype.");
     }
 
     @Test
@@ -30,7 +30,7 @@ public class InterfazArbolTest {
         System.out.println("buscarDato");
         InterfazArbol instance = new InterfazArbol();
         instance.buscarDato();
-        //fail("The test case is a prototype.");
+      //  fail("The test case is a prototype.");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class InterfazArbolTest {
         System.out.println("crearArbol");
         InterfazArbol instance = new InterfazArbol();
         instance.crearArbol();
-        //fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
 
     @Test
@@ -46,7 +46,7 @@ public class InterfazArbolTest {
         System.out.println("insertarDatos");
         InterfazArbol instance = new InterfazArbol();
         instance.insertarDatos();
-        //fail("The test case is a prototype.");
+      //  fail("The test case is a prototype.");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class InterfazArbolTest {
         System.out.println("eliminarDatos");
         InterfazArbol instance = new InterfazArbol();
         instance.eliminarDatos();
-        //fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class InterfazArbolTest {
         System.out.println("verArbol");
         InterfazArbol instance = new InterfazArbol();
         instance.verArbol();
-        //fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
     
 }
