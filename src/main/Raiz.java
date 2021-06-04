@@ -50,12 +50,12 @@ public class Raiz {
                     primero.claves[i] = clave;
                     listaClaves.add(clave);
                     j = i;
-                    ordenarClaves(primero.claves, 6);
+                    ordenarClaves(primero.claves);
                     break;
                 }
             }
             if (j == 2 * orden) {
-                dividir(primero);
+                dividirNodos(primero);
             }
         } else {
             setHoja(primero);
@@ -77,10 +77,10 @@ public class Raiz {
             for (int i = 0; i <= 2 * orden; i++) {
                 if (padre.claves[i] == 0) {
                     padre.claves[i] = clave;
-                    ordenarClaves(padre.claves, 6);
+                    ordenarClaves(padre.claves);
                     listaClaves.add(clave);
                     if (i == 2 * orden) {
-                        dividir(padre);
+                        dividirNodos(padre);
                     }
                     break;
                 }
@@ -95,6 +95,31 @@ public class Raiz {
             }
         }
     }
+    
+    public void dividirArreglo(int[] arreglo, int izquierda, int derecha) {
+        if (izquierda < derecha) {
+            int mitad = (izquierda + derecha) / 2;
+            dividirArreglo(arreglo, izquierda, mitad);
+            dividirArreglo(arreglo, mitad + 1, derecha);
+            unirArreglo(arreglo, izquierda, mitad, derecha);
+        }
+    }
+    
+    public void unirArreglo(int[] arreglo, int izquierda, int mitad, int derecha) {
+        int i, j, k;
+        int[] aux = new int[arreglo.length];
+        for (i = izquierda; i <= derecha; i++) {
+            aux[i] = arreglo[i];
+        }
+        i = k = izquierda;
+        j = mitad + 1;
+        while (i <= mitad && j <= derecha) {
+            arreglo[k++] = (aux[i] <= aux[j]) ? aux[i++] : aux[j++];
+        }
+        while (i <= mitad) {
+            arreglo[k++] = aux[i++];
+        }
+    }
 
     /**
      * Ordena las claves cuando se inserta una nueva al nodo, puesto que siempre
@@ -102,24 +127,14 @@ public class Raiz {
      *
      * @param claves El arreglo a ordenar
      */
-    public void ordenarClaves(int[] claves, int counter) {
-        counter = 0;
-        for (int i = 0; i < claves.length; i++) {
-            if (claves[i] != 0) {
-                counter++;
-            } else {
+    public void ordenarClaves(int[] claves) {
+        int contador = 0;
+        for (int i : claves)
+            if (i != 0)
+                contador++;
+            else
                 break;
-            }
-        }
-        for (int i = 0; i < counter; i++) {
-            for (int j = 0; j < counter - 1; j++) {
-                if (claves[j] > claves[j + 1]) {
-                    int temp = claves[j];
-                    claves[j] = claves[j + 1];
-                    claves[j + 1] = temp;
-                }
-            }
-        }
+        dividirArreglo(claves, 0, contador - 1);
     }
 
     /**
@@ -145,6 +160,7 @@ public class Raiz {
             }
             i++;
         }
+        //dividirArreglo(nodo.hijos, 0, orden);
     }
 
     /**
@@ -155,11 +171,9 @@ public class Raiz {
      * @param nodo El nodo a evaluar
      */
     public void setHoja(Nodo nodo) {
-        if (nodo == primero) {
-            if (primero.hijos[0] != null) {
+        if (nodo == primero)
+            if (primero.hijos[0] != null)
                 primero.hoja = true;
-            }
-        }
         for (Nodo hijo : nodo.hijos) {
             if (hijo != null) {
                 nodo.hoja = true;
@@ -183,7 +197,7 @@ public class Raiz {
      *
      * @param nodo
      */
-    public void dividir(Nodo nodo) {
+    public void dividirNodos(Nodo nodo) {
         Nodo izquierdo = new Nodo();
         Nodo derecho = new Nodo();
 
@@ -225,7 +239,7 @@ public class Raiz {
                     nodo.padre.claves[i] = nodo.claves[0];
                     logrado = true;
                     nodo.claves[0] = 0;
-                    ordenarClaves(nodo.padre.claves, 5);
+                    ordenarClaves(nodo.padre.claves);
                 }
             }
             int posicion = 0;
@@ -257,10 +271,10 @@ public class Raiz {
                 j++;
             }
             temp.hijos[j] = null;
-            ordenarClaves(temp.claves, 5);
+            ordenarClaves(temp.claves);
             ordenarNodos(temp);
             if (temp.claves[2 * orden] != 0) {
-                dividir(temp);
+                dividirNodos(temp);
             }
         }
     }
@@ -340,7 +354,7 @@ public class Raiz {
 
             for (int j = 0; nodo.hijos[i] != null && j < nodo.hijos[i].claves.length; j++) {
                 if (nodo.hijos[i].claves[j] != 0) {
-                    arbol += nodo.hijos[i].claves[j] + ", ";
+                    arbol += nodo.hijos[i].claves[j] + "  ";
                 }
             }
 
@@ -361,7 +375,7 @@ public class Raiz {
      * @return La impresión del arbol
      */
     public String impresion() {
-        String a = imprimirArbol(primero);
+        imprimirArbol(primero);
         nivel = 1;
         imprimir = 1;
         return arbol;
@@ -374,7 +388,7 @@ public class Raiz {
      * @param str
      * @return Verdadero si es un número. Falso de no ser así.
      */
-    public boolean numero(String str) {
+    public boolean validarNumero(String str) {
         try {
             Integer.parseInt(str);
             return true;

@@ -130,11 +130,11 @@
                       <EmptySpace pref="83" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jTextField1" min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="campoGrado" min="-2" pref="103" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="CrearArbol" min="-2" pref="142" max="-2" attributes="0"/>
+                              <Component id="btnCrearArbol" min="-2" pref="142" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -145,18 +145,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoGrado" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="CrearArbol" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="btnCrearArbol" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="campoGrado">
             </Component>
-            <Component class="keeptoo.KButton" name="CrearArbol">
+            <Component class="keeptoo.KButton" name="btnCrearArbol">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear Nuevo Arbol"/>
                 <Property name="kBackGroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -179,7 +179,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CrearArbolActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearArbolActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -212,7 +212,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="33" max="32767" attributes="0"/>
-                      <Component id="VerArbol" min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="btnVerArbol" min="-2" pref="133" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -221,14 +221,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="VerArbol" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="btnVerArbol" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="keeptoo.KButton" name="VerArbol">
+            <Component class="keeptoo.KButton" name="btnVerArbol">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver Arbol"/>
                 <Property name="kBackGroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -251,7 +251,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VerArbolActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerArbolActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -281,20 +281,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                      <Component id="jTextField3" min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="campoInsertar" min="-2" pref="76" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                      <Component id="jTextField4" min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="campoEliminar" min="-2" pref="76" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jTextField5" min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="campoBuscar" min="-2" pref="76" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="InsertarDato" min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="btnInsertarDato" min="-2" pref="133" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="EliminarDato" min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="btnEliminarDato" min="-2" pref="133" max="-2" attributes="0"/>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
-                      <Component id="BuscarDato" min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="btnBuscarDato" min="-2" pref="133" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -304,15 +304,15 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoInsertar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="InsertarDato" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="EliminarDato" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="BuscarDato" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="btnInsertarDato" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="btnEliminarDato" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="btnBuscarDato" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
@@ -320,13 +320,13 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="campoInsertar">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="campoEliminar">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="campoBuscar">
             </Component>
-            <Component class="keeptoo.KButton" name="InsertarDato">
+            <Component class="keeptoo.KButton" name="btnInsertarDato">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Insertar Dato"/>
                 <Property name="kBackGroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -349,10 +349,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InsertarDatoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInsertarDatoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="keeptoo.KButton" name="EliminarDato">
+            <Component class="keeptoo.KButton" name="btnEliminarDato">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Dato"/>
                 <Property name="kBackGroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -375,10 +375,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarDatoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarDatoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="keeptoo.KButton" name="BuscarDato">
+            <Component class="keeptoo.KButton" name="btnBuscarDato">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar Dato"/>
                 <Property name="kBackGroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -401,7 +401,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarDatoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarDatoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
